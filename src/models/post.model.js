@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 
 // Create Schema → defines structure (rules of data)
 const postSchema = new mongoose.Schema({  // rules
-    img : String,
-    cap : String,
+    image: String,
+    caption: String,
 })
+
 
 const postModel = mongoose.model("post", postSchema)  // "post"(collection Name) 👉 📁 folder name (MongoDB collection → posts)
 

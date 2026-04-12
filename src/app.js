@@ -10,7 +10,7 @@ const upload = multer({storage : multer.memoryStorage()})
 // Useful when you want to directly process or send file to cloud (AWS, Cloudinary, etc.)
  
 
-app.post("/create-post",upload.single("img"), async (req, res) => {
+app.post("/create-post",upload.single("image"), async (req, res) => {
     console.log(req.body);
     console.log(req.file);
     const result = await uploadFile(req.file.buffer)
@@ -18,9 +18,7 @@ app.post("/create-post",upload.single("img"), async (req, res) => {
         image: result.url,
         caption: req.body.caption
     })
-    app.get("/posts", async (req, res) => {
-
-    })
+   
 
     return res.status(201).json({
         message : "Post Created SucessFully",
@@ -28,6 +26,14 @@ app.post("/create-post",upload.single("img"), async (req, res) => {
       
      })
     })
+
+ app.get("/posts", async (req, res) => {
+        const posts = await postModel.find()
+        return res.status(200).json({
+            message: "Post Fetched sucessfully!",
+            posts
+        })
+    })   
 
 
 
