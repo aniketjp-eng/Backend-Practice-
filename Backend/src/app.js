@@ -6,9 +6,9 @@ const app = express();// Create an Express app instance
 const postModel = require("./models/post.model")
 const uploadFile = require("./services/storage.service")
 const upload = multer({storage : multer.memoryStorage()}) 
-
+const cors = require("cors");
 // Useful when you want to directly process or send file to cloud (AWS, Cloudinary, etc.)
- 
+ app.use(cors());
 
 app.post("/create-post",upload.single("image"), async (req, res) => {
     console.log(req.body);
